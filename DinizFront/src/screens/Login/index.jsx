@@ -1,13 +1,12 @@
 import React , {useEffect, useState} from 'react';
 import { View, Text, Button, Thumbnail, Content, Form, Item, Input, Label } from 'native-base';
 import { Alert, StyleSheet, Dimensions, ImageBackground } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
 import {api} from '../../utils/api'
 import LinearGradient from 'react-native-linear-gradient';
 import { COLOR, Styles } from '../../config/styles';
 import { SafeAreaView, ScrollView } from 'react-native';
 import {Style} from './styles'
-import { Hr } from '../../components';
+import { Hr, Loader } from '../../components';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { Types } from '../../store/ducks/authenticate';
@@ -24,12 +23,6 @@ const logoProps = {
   square: true,
 };
 
-const navioProps = {
-  style: Style.fundoNavio,
-  source: require('../../assets/ship-opacity.png'),
-  square: true,
-};
-
 const style = StyleSheet.create({
   container: {
     height: Dimensions.get('window').height,
@@ -42,25 +35,36 @@ export function LoginScreen() {
   const navigation = useNavigation();
   
   const [email, setEmailLogin] = useState('')
-  const [password, setSenhaLogin] = useState('')
+  const [senha, setSenhaLogin] = useState('')
+  const [open, setOpen] = useState(false)
   const dispatch = useDispatch();
 
   useEffect(() => {
   }, [])
 
+
   function login() {  
-    // let url = '/api/Authenticate/Login'
-    // const body = {
-    //   email,
-    //   password
-    // }
-    // api('').post(url, body)
-    // .then(({ data: {token} }) => {
-      navigation.navigate('Monitoramento')
-      // AsyncStorage.setItem('email', email)
-    //   dispatch({type: Types.LOGAR, email, token})
-    // })
-    // .catch(err => Alert.alert('Login ou senha inválido(s).'));
+    let url = '/Auth/Login'
+    const body = {
+      emailUsuario: email,
+      senhaUsuario: senha
+    }
+    setOpen(true)
+    api('').post(url, body)
+    .then(({data: {token}}) => {
+      console.log(token)
+      dispatch({type: Types.LOGAR, token})
+      navigation.navigate('Home')
+    })
+    .catch(
+      err => {
+        console.log(err.response)
+        Alert.alert('Email ou senha inválido(s).')
+      }
+    )
+    .finally(() => {
+      setOpen(false);
+    });
   }
 
   return (
@@ -82,9 +86,12 @@ export function LoginScreen() {
               <Text style={{alignSelf: 'flex-end', marginRight: 30,fontSize: 14}}>Esqueceu sua senha?</Text>
               <Button style={Style.btnEntrar} onPress={() => login()}><Text style={{textAlign: "center"}}>Entrar</Text></Button>
               <Text style={{alignSelf: 'center'}}>ou</Text>
-              <Button style={Style.btnCadastro} onPress={() => login()}><Text style={{textAlign: "center"}}>Cadastre-se</Text></Button>
+              <Button style={Style.btnCadastro} onPress={() => navigation.navigate('Cadastro')}><Text style={{textAlign: "center"}}>Cadastre-se</Text></Button>
           </View>
           {/* <ImageBackground source={require('../../assets/ship-opacity.png')} style={{ width: Dimensions.get('window').width, height: 100, marginTop: -20 }}/> */}
+          <Loader
+            open={open}
+          />
         </SafeAreaView>
       </ScrollView>
     </LinearGradient>

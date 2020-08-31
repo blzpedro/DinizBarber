@@ -1,18 +1,19 @@
 import axios from 'axios';
 
-// const getBearer = (token = '') => {
-//     const bearer = token ? `Bearer ${token}` : '';
-//     return bearer;
-// };
+const getBearer = (token = '') => {
+    const bearer = token ? `Bearer ${token}` : '';
+    return bearer;
+};
 
-export function api() {
-    return axios.create({
-        // baseURL: 'http://vm-tes-mon-navios.westus2.cloudapp.azure.com:5000',
-        headers: {
-            // Authorization: getBearer(token),
-            'Content-Type': 'application/json-patch+json',
-        },
-    });
+export function api(token) {
+  console.log(token)
+  return axios.create({
+      baseURL: 'https://dinizapi.herokuapp.com/api/v1',
+      headers: {
+          'Authorization': getBearer(token),
+          'Content-Type': 'application/json-patch+json',
+      },
+  });
 }
 
 export function handleRequestError(error) {

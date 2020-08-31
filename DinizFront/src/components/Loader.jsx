@@ -10,6 +10,8 @@ const Styles = ScaledSheet.create({
     left: '0@s',
     right: '0@s',
     bottom: '0@vs',
+    backgroundColor: 'rgb(134, 134, 134)',
+    opacity: 0.4
   },
   subView: {
     flex: 1,
@@ -19,7 +21,7 @@ const Styles = ScaledSheet.create({
   activityView: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgb(134, 134, 134)',
     width: '128@s',
     height: '128@vs',
     borderRadius: 16,

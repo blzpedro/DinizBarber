@@ -5,14 +5,12 @@ export const { Types, Creators } = createActions({
 });
 
 const INITIAL_STATE = [{
-    email: '',
     token: ''
 }]
 
 const logar = (state = INITIAL_STATE, action) => (
     {   
         ...state,
-        email: action.email,
         token: action.token,
     }
 )

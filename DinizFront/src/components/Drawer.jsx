@@ -47,10 +47,10 @@ export const Drawer = props => {
 
         <TouchableOpacity style={Styles.drawerItem}>
         <Icon name="home" type="FontAwesome5" style={Styles.drawerIcon} />
-        <DrawerItem {...props} label='Home' onPress={() => navigate('Monitoramento')} labelStyle={Styles.drawerLabel} />
+        <DrawerItem {...props} label='Home' onPress={() => navigate('Home')} labelStyle={Styles.drawerLabel} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={Styles.drawerItem} onPress={() => navigate('Condicoes')}>
+        <TouchableOpacity style={Styles.drawerItem} onPress={() => navigate('Agendamento')}>
         <Icon name="calendar-clock" type="MaterialCommunityIcons" style={Styles.drawerIcon} />
         <DrawerItem {...props} label='Agendamento' labelStyle={Styles.drawerLabel} />
         </TouchableOpacity>
@@ -74,6 +74,7 @@ export const Drawer = props => {
         <Icon name="exit-to-app" type="MaterialCommunityIcons" style={Styles.drawerIcon} labelStyle={Styles.drawerLabel} />
         <DrawerItem {...props} label='Sair' labelStyle={Styles.drawerLabel} />
         </TouchableOpacity>
+
         </DrawerContentScrollView>
     </SafeAreaView>
     )

@@ -17,7 +17,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import DropDownItem from 'react-native-drop-down-item';
 import { HoraAlturaMares } from './components/HoraAlturaMares';
 
-export function ClimatempoScreen() {
+export function AgendamentoScreen() {
 
     const toggleExpand = () => {
         setExpanded(!expanded);
@@ -44,8 +44,6 @@ export function ClimatempoScreen() {
     useEffect(() => {
         getPrevisao()
         getPrevisaoHoje()
-        getMareAtual()
-        getMareSemana()
     }, [])
     
     function getPrevisao() {  
@@ -64,31 +62,6 @@ export function ClimatempoScreen() {
         api('').get(url)
         .then(({ data }) => {
             setPrevisaoHoje(data)
-        })
-        .catch(err => console.log('Erro ao dar get previsão hoje', err));
-    }
-
-    function getMareAtual() {  
-        let url = '/api/TabuaMares/getAtual'
-
-        api('').get(url)
-        .then(({ data }) => {
-            setMareAtual(data)
-        })
-        .catch(err => console.log('Erro ao dar get previsão hoje', err));
-    }
-
-    function getMareSemana() {  
-        let url = '/api/TabuaMares/getPorSemana'
-
-        api('').get(url)
-        .then(({ data }) => {
-            let arrayMareSemana = []
-            data.map((mareSemana, key) => {
-                arrayMareSemana.push(Object.assign(mareSemana, {'key': `${key}`}))
-            })
-            setMareSemana(arrayMareSemana)
-            console.log(data)
         })
         .catch(err => console.log('Erro ao dar get previsão hoje', err));
     }

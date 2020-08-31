@@ -5,6 +5,7 @@ import { View } from 'native-base';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { Alert, StyleSheet, Dimensions } from 'react-native';
 import {api} from '../../utils/api'
+import { useSelector } from 'react-redux';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,9 +21,11 @@ const styles = StyleSheet.create({
  });
 
 export function HomeScreen() {
+
+  const authenticate = useSelector(({ authenticate }) => authenticate);
   
   useEffect(() => {
-    getNavios();
+    getInfos();
   }, [])
 
   const [navios, setNavios] = useState()
@@ -31,14 +34,14 @@ export function HomeScreen() {
     {name: '3', latitude: -23.982210, longitude: -46.291282}, {name: '4', latitude: -23.982214, longitude:-46.289140},
   ])
 
-  function getNavios() {  
-    let url = '/api/Navios/getMarineTraffic'
+  function getInfos() {  
+    let url = '/Login'
     
-    api('').get(url)
+    api(authenticate.token).get(url)
     .then(({ data }) => {
-      setNavios(data)
+      console.log(data)
     })
-    .catch(err => console.log('Erro ao buscar Navios', err));
+    .catch(err => console.log(err.response));
   }
 
   return (
