@@ -18,7 +18,8 @@ export const COLOR = {
     BLACK: '#000000',
     SHIP_ICON: '#005781',
     MARE_INITIAL: '#086BB7' ,
-    MARE_LAST: '#5BB6FC' 
+    MARE_LAST: '#5BB6FC', 
+    GREEN: 'rgb(10, 190, 0)'
   };
 
 export const Styles = ScaledSheet.create({
@@ -61,7 +62,7 @@ export const Styles = ScaledSheet.create({
     },
     title: {
       fontSize: '34@s',
-      marginVertical: '20@s',
+      marginVertical: '10@s',
       marginLeft: '10@s',
       color: COLOR.LIGHT
     },
@@ -113,26 +114,31 @@ export const Styles = ScaledSheet.create({
       backgroundColor: COLOR.MAIN,
       marginLeft: 'auto',
       marginRight: 'auto',
-      marginTop: 20
+      marginTop: 10,
+      marginBottom: 30
     },
     container:{
       backgroundColor: COLOR.DANGER,
-      padding: 0
+      padding: 0,
+      flexDirection:'row',
+      flexWrap: 'wrap'
     },
     drawerItem: {
       flexDirection: 'row',
-      // borderColor: COLOR.BLACK,
-      // borderBottomWidth: 1,
+      borderColor: COLOR.BLACK,
+      borderWidth: 0.5,
       alignItems: 'center',
       marginHorizontal: 0,
+      marginBottom: 15,
       paddingLeft: '20@s',
+      flexWrap: 'wrap'
     },
     drawerIcon: {
-      fontSize: '16@s',
+      fontSize: '24@s',
       opacity: 0.5
     },
     drawerLabel: {
       color: COLOR.LIGHT,
-      fontSize: '14@s'
+      fontSize: '14@s',
     },
 });

@@ -12,7 +12,7 @@ import Tooltip from 'rn-tooltip';
 const gradientProps = {
     start: { x: 0, y: 0 },
     end: { x: 1, y: 0 },
-    colors: [COLOR.MAIN, COLOR.BLACK]
+    colors: [COLOR.DANGER, COLOR.MAIN],
 };
 
 export const Header = () => {

@@ -8,7 +8,6 @@ import { scale, verticalScale } from 'react-native-size-matters';
 import { Temperatura } from './components/Temperaturas'
 import { Chuvas } from './components/Chuvas'
 import { Ventos } from './components/Ventos'
-import { Mares } from './components/Mares'
 import { COLOR } from '../../config/styles';
 import { ImageBackground, Dimensions, FlatList } from 'react-native';
 import { capitalize } from '../../utils/functions';
@@ -26,7 +25,7 @@ export function AgendamentoScreen() {
     const cardBlue = {
         start: { x: 0, y: 0 },
         end: { x: 1, y: 0 },
-        colors: [COLOR.MAIN, COLOR.BLACK],
+        colors: [COLOR.DANGER, COLOR.MAIN],
     };
     
     const cardTransparent = {

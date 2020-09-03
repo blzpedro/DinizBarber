@@ -5,13 +5,14 @@ export const { Types, Creators } = createActions({
 });
 
 const INITIAL_STATE = [{
-    token: ''
+    token: '',
+    admin: Boolean
 }]
 
 const logar = (state = INITIAL_STATE, action) => (
     {   
-        ...state,
         token: action.token,
+        admin: action.admin,
     }
 )
 

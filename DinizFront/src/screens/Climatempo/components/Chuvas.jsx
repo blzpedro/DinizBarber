@@ -21,7 +21,7 @@ export const Chuvas = ({chuvas}) => {
             cardSunOrRain = {                
                 start: { x: 0, y: 0 },
                 end: { x: 1, y: 0 },
-                colors: [COLOR.MAIN, COLOR.BLACK]
+                colors: [COLOR.DANGER, COLOR.MAIN],
             } 
             iconSunOrRain = 'cloud-showers-heavy';
             fontIcon = 'FontAwesome5';

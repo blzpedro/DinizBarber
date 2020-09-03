@@ -45,16 +45,17 @@ export function LoginScreen() {
 
   function login() {  
     let url = '/Auth/Login'
+    let admin;
     const body = {
       emailUsuario: email,
       senhaUsuario: senha
     }
     setOpen(true)
     api('').post(url, body)
-    .then(({data: {token}}) => {
-      console.log(token)
-      dispatch({type: Types.LOGAR, token})
-      navigation.navigate('Home')
+    .then(({data: {token, user}}) => {
+      admin = user.admin
+      dispatch({type: Types.LOGAR, token, admin})
+      navigation.navigate('LiberarHorarios')
     })
     .catch(
       err => {
